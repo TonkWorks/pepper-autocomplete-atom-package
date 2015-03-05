@@ -1,0 +1,77 @@
+{
+  "name": "pepper-autocomplete",
+  "main": "./lib/pepper-autocomplete",
+  "version": "0.0.1",
+  "description": "Pepper Autocomplete.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webBoxio/pepper-autocomplete"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+    "underscore-plus": "^1.2.1"
+  },
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/webBoxio/pepper-autocomplete/issues"
+  },
+  "homepage": "https://pepper-autocomplete.com",
+  "_id": "pepper-autocomplete@0.1.3",
+  "_shasum": "1b6a3d9636c2b2411e84e1c95ab2121ea54e153e",
+  "_resolved": "file:..\\d-115125-13400-1u7ants\\package.tgz",
+  "_from": "..\\d-115125-13400-1u7ants\\package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [
+      {
+        "name": "underscore-plus",
+        "version": "1.6.6",
+        "path": "node_modules\\underscore-plus\\lib\\underscore-plus.js"
+      },
+      {
+        "name": "underscore",
+        "version": "1.6.0",
+        "path": "node_modules\\underscore-plus\\node_modules\\underscore\\underscore.js"
+      }
+    ],
+    "extensions": {
+      ".coffee": [
+        "lib\\pepper-autocomplete-view.coffee",
+        "lib\\pepper-autocomplete.coffee"
+      ],
+      ".js": [
+        "node_modules\\underscore-plus\\lib\\underscore-plus.js",
+        "node_modules\\underscore-plus\\node_modules\\underscore\\underscore-min.js",
+        "node_modules\\underscore-plus\\node_modules\\underscore\\underscore.js"
+      ],
+      ".json": [
+        "node_modules\\underscore-plus\\node_modules\\underscore\\package.json",
+        "node_modules\\underscore-plus\\package.json",
+        "package.json"
+      ]
+    },
+    "folders": [
+      {
+        "paths": [
+          "lib",
+          ""
+        ],
+        "dependencies": {
+          "underscore-plus": "^1.2.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules\\underscore-plus\\lib",
+          "node_modules\\underscore-plus"
+        ],
+        "dependencies": {
+          "underscore": "~1.6.0"
+        }
+      }
+    ]
+  }
+}

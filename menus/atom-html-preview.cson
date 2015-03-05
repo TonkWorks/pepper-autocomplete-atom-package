@@ -1,0 +1,15 @@
+'context-menu':
+  '.overlayer':
+      'Preview HTML': 'pepper-autocomplete:toggle'
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'Pepper-Autocomplete'
+      'submenu': [
+        { 'label': 'Enable Autocomplete', 'command': 'pepper-autocomplete:toggle' }
+      ]
+    ]
+  }
+]

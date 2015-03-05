@@ -1,0 +1,3 @@
+'atom-workspace':
+  'ctrl-0': 'pepper-autocomplete:toggle'
+  'ctrl-1': 'pepper-autocomplete-view:complete'
