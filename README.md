@@ -1,5 +1,8 @@
 #Pepper Autocomplete
 
+![Pepper Autocomplete Screenshot](http://localhost/static/images/pepper/python_example.gif)
+
+
 Search millions of lines of open source code while you type.
 
 Install:
