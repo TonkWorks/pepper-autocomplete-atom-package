@@ -5,7 +5,7 @@
   "description": "Pepper Autocomplete.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/webBoxio/pepper-autocomplete"
+    "url": "https://github.com/TonkWorks/pepper-autocomplete-atom-package"
   },
   "license": "MIT",
   "engines": {
@@ -16,7 +16,7 @@
   },
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/webBoxio/pepper-autocomplete/issues"
+    "url": "https://github.com/TonkWorks/pepper-autocomplete-atom-package/issues"
   },
   "homepage": "https://pepper-autocomplete.com",
   "_id": "pepper-autocomplete@0.1.3",
