@@ -1,7 +1,7 @@
 {
   "name": "pepper-autocomplete",
   "main": "./lib/pepper-autocomplete",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Pepper Autocomplete.",
   "repository": {
     "type": "git",
