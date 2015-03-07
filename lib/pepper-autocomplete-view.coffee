@@ -122,102 +122,16 @@ class PepperHtmlPreviewView extends ScrollView
       @renderHTMLCode(@editor.getText())
 
   renderHTMLCode: (text) ->
-    text = """
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Editor</title>
-    <style type="text/css" media="screen">
-      body {
-          overflow: hidden;
-      }
-
-
-      #auto_completion_screen {
-          margin: 0;
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          overflow-y: scroll;
-      }
-
-
-
-      .code_result {
-          margin-bottom: 0px;
-
-      }
-    .card {
-        padding: 4px;
-    }
-
-
-        .info_div_result {
-        text-align: right;
-
-    }
-
-
-      .marker_highlight{
-        position:absolute;
-        background:rgba(100,100,200,0.5);
-        z-index:20
-      }
-
-
-      			.error{
-				text-align: center;
-				margin-left: auto;
-				margin-right: auto;
-				width: 400px;
-				background-color: #b0e0e6;
-			}
-
-    </style>
-  </head>
-  <body>
-
-  <pre id="auto_completion_screen">Auto-Completion-Editor
-  </pre>
-
-      <script src="atom://pepper-autocomplete/media/jquery.js" type="text/javascript"></script>
-
-
-      <!-- json -->
-      <script src="atom://pepper-autocomplete/media/jquery.json-2.3.js" type="text/javascript"></script>
-
-      <!-- ace -->
-      <script src="atom://pepper-autocomplete/media/ace/src/ace.js" type="text/javascript"></script>
-
-      <!-- results -->
-      <script src="atom://pepper-autocomplete/media/results.js" type="text/javascript"></script>
-      <script>
-
-    var Range = ace.require("ace/range").Range
-    window.pepper_tabs = 0
-    window.pepper_last_completion = ""
-    window.pepper_ignore_changes = false
-
-
-    document.addEventListener('new-window', function(e) {
-      c
-      require('shell').openExternal(e.url);
-    });
-      </script>
-
-  </body>
-  </html>
-    """
-
-    webview = '<webview id="pepper_frame" src=' + "data:text/html;charset=utf-8,#{encodeURI(text)}" +  ' autosize="on" nodeintegration plugins></webview>'
     iframe = document.createElement("iframe")
     iframe.id = "pepper_frame"
-    iframe.src = "data:text/html;charset=utf-8,#{encodeURI(text)}"
+    iframe.src = "http://pepper-autocomplete.com/results"#"http://localhost/results"
     @html $ iframe
+
+    document.getElementById("pepper_frame").contentWindow.atomClientConsole = @atomClientConsole
+    document.getElementById("pepper_frame").contentWindow.atomClientExternalBrowser = @atomClientExternalBrowser
+    document.getElementById("pepper_frame").contentWindow.atomClientSetKey = @atomClientSetKey
+    document.getElementById("pepper_frame").contentWindow.atomClientGetKey = @atomClientGetKey
+
 
 
   updateResults: ->
@@ -262,6 +176,17 @@ class PepperHtmlPreviewView extends ScrollView
       @div class: 'atom-html-spinner', 'Loading HTML Preview\u2026'
 
 
+  atomClientConsole: (text) ->
+    console.log text
+
+  atomClientExternalBrowser: (url) ->
+    require('shell').openExternal url
+
+  atomClientSetKey: (key) ->
+    atom.config.set('pepper-autocomplete.LicenseKey', key)
+
+  atomClientGetKey: ->
+    return atom.config.get('pepper-autocomplete.LicenseKey')
 
   ensureUserInfo: (callback) ->
     if localStorage.getItem('metrics.userId')
