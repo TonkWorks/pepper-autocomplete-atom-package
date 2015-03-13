@@ -13,25 +13,26 @@ class PepperHtmlPreviewView extends ScrollView
 
   if atom.workspace?
     editor = atom.workspace.getActiveTextEditor()
-    editor.pepper_ignore_changes = false
-    editor.pepper_tabs = 0
-    editor.pepper_last_completion = ""
+    if editor?
+      editor.pepper_ignore_changes = false
+      editor.pepper_tabs = 0
+      editor.pepper_last_completion = ""
 
   @complete: ->
     editor = atom.workspace.getActiveTextEditor()
+    if editor?
+      editor.pepper_ignore_changes = true
+      if editor.pepper_tabs > 0
+        editor.undo()
 
-    editor.pepper_ignore_changes = true
-    if editor.pepper_tabs > 0
-      editor.undo()
+      row = editor.getCursorScreenPosition().row
+      current_line = editor.lineTextForScreenRow(row)
+      completion_string = document.getElementById("pepper_frame").contentWindow.pepper.tab_complete_string(current_line, editor.pepper_tabs)
+      editor.insertText(completion_string)
 
-    row = editor.getCursorScreenPosition().row
-    current_line = editor.lineTextForScreenRow(row)
-    completion_string = document.getElementById("pepper_frame").contentWindow.pepper.tab_complete_string(current_line, editor.pepper_tabs)
-    editor.insertText(completion_string)
+      editor.pepper_tabs += 1
 
-    editor.pepper_tabs += 1
-
-    editor.pepper_ignore_changes = false
+      editor.pepper_ignore_changes = false
 
   @deserialize: (state) ->
     new PepperHtmlPreviewView(state)
@@ -142,7 +143,7 @@ class PepperHtmlPreviewView extends ScrollView
       row = @editor.getCursorScreenPosition().row
       line_text = @editor.lineTextForScreenRow(row)
 
-      user_id = localStorage.getItem('metrics.userId')
+      user_id = localStorage.getItem('pepper-autocomplete.userId')
       key = atom.config.get('pepper-autocomplete.LicenseKey')
 
       #document.getElementById("pepper_frame").pepper.context_change line_text, user_id, key
@@ -189,16 +190,17 @@ class PepperHtmlPreviewView extends ScrollView
     return atom.config.get('pepper-autocomplete.LicenseKey')
 
   ensureUserInfo: (callback) ->
-    if localStorage.getItem('metrics.userId')
-      callback()
-    else if atom.config.get('metrics.userId')
-      # legacy. Users who had the metrics id in their config file
-      localStorage.setItem('metrics.userId', atom.config.get('metrics.userId'))
-      callback()
-    else
-      @createUserId (userId) =>
-        localStorage.setItem('metrics.userId', userId)
-        callback()
+    if localStorage.getItem('pepper-autocomplete.toggleUserID')
+        if localStorage.getItem('pepper-autocomplete.userId')
+          callback()
+        else if atom.config.get('pepper-autocomplete.userId')
+          # legacy. Users who had the metrics id in their config file
+          localStorage.setItem('pepper-autocomplete.userId', atom.config.get('pepper-autocomplete.userId'))
+          callback()
+        else
+          @createUserId (userId) =>
+            localStorage.setItem('pepper-autocomplete.userId', userId)
+            callback()
 
 
   createUserId: (callback) ->

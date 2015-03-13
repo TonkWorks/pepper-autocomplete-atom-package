@@ -53,6 +53,14 @@ module.exports =
     LicenseKey:
         type: 'string'
         default: ''
+        description: 'License key is required to access the service.  Get one at https://pepper-autocomplete.com'
+
+    toggleUserID:
+      type: 'boolean'
+      default: true
+      description: 'Toggles the generation and use of a unique id to get more customized and relevant results.'
+
     autoToggle:
       type: 'boolean'
       default: true
+      description: 'Start when atom editor starts.'
