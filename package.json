@@ -1,8 +1,8 @@
 {
   "name": "pepper-autocomplete",
   "main": "./lib/pepper-autocomplete",
-  "version": "0.4.0",
-  "description": "Pepper Autocomplete.",
+  "version": "0.3.0",
+  "description": "Search millions of open-source projects as you type.  Instant examples and implementations from high-quality open source projects. javascript, python, java, php, c++, go and swift",
   "repository": {
     "type": "git",
     "url": "https://github.com/TonkWorks/pepper-autocomplete-atom-package"
