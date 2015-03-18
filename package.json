@@ -1,7 +1,7 @@
 {
   "name": "pepper-autocomplete",
   "main": "./lib/pepper-autocomplete",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Search millions of open-source projects as you type.  Instant examples and implementations from high-quality open source projects. javascript, python, java, php, c++, go and swift",
   "repository": {
     "type": "git",
