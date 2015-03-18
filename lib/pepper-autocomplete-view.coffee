@@ -21,18 +21,19 @@ class PepperHtmlPreviewView extends ScrollView
   @complete: ->
     editor = atom.workspace.getActiveTextEditor()
     if editor?
-      editor.pepper_ignore_changes = true
-      if editor.pepper_tabs > 0
-        editor.undo()
+      if document.getElementById("pepper_frame").contentWindow?
+          editor.pepper_ignore_changes = true
+          if editor.pepper_tabs > 0
+            editor.undo()
 
-      row = editor.getCursorScreenPosition().row
-      current_line = editor.lineTextForScreenRow(row)
-      completion_string = document.getElementById("pepper_frame").contentWindow.pepper.tab_complete_string(current_line, editor.pepper_tabs)
-      editor.insertText(completion_string)
+          row = editor.getCursorScreenPosition().row
+          current_line = editor.lineTextForScreenRow(row)
+          completion_string = document.getElementById("pepper_frame").contentWindow.pepper.tab_complete_string(current_line, editor.pepper_tabs)
+          editor.insertText(completion_string)
 
-      editor.pepper_tabs += 1
+          editor.pepper_tabs += 1
 
-      editor.pepper_ignore_changes = false
+          editor.pepper_ignore_changes = false
 
   @deserialize: (state) ->
     new PepperHtmlPreviewView(state)
